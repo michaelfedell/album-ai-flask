@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+    <title>{{ title }} - Album.AI</title>
+    {% else %}
+    <title>Welcome to Album.AI</title>
+    {% endif %}
+</head>
+<body>
+<div>Album.AI: <a href="/index">Home</a></div>
+<hr>
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -104,5 +104,6 @@ venv.bak/
 .mypy_cache/
 
 # Raw data
-data/*
+app.db
+
 !.gitkeep

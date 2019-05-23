@@ -1,21 +1,10 @@
 h1, h2 {margin: 0}
-#title {
+.accent {
     background-color: #A8DADC;
 }
 #title-box {
     margin: 20px 0;
     border-bottom: 5px solid black;
-}
-
-#findings {
-    /*height: 100%;*/
-    /*width: 60%;*/
-    /*position: fixed;*/
-    /*z-index: 1;*/
-    /*top: 0;*/
-    /*right: 0;*/
-    /*overflow-x: hidden;*/
-    /*padding-top: 20px;*/
 }
 
 @media (min-width: 768px) {

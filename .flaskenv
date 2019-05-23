@@ -1,0 +1,1 @@
+FLASK_APP=beat_the_machine.py

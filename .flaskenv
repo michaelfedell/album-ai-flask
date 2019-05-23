@@ -1,1 +1,2 @@
 FLASK_APP=beat_the_machine.py
+FLASK_ENV=development

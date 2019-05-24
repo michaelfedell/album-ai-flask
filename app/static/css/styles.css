@@ -1,49 +1,16 @@
-/*h1, h2 {margin: 0}*/
-.accent {
-    background-color: #A8DADC;
-}
 #title-box {
     border-bottom: 5px solid black;
     margin-bottom: 10px;
 }
 
-#authors {
-
+#title-box h1 {
+    display: inline;
 }
 
-#authors ul {
-    list-style: none;
-    font-size: 1.5em;
+/*h1, h2 {margin: 0}*/
+.accent {
+    background-color: #A8DADC;
 }
-
-#game-button {
-    align-content: center;
-}
-
-#game-button a {
-    margin: 50px auto;
-    width: 250px;
-    font-size: 1.5em;
-    color: #707070;
-    background-color: #F1FAEE;
-}
-
-#acknowledgements {
-    text-align: center;
-    margin: 0 0 10px -30px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
-#acknowledgements p {
-    margin: 0;
-}
-
-#acknowledgements p:first-child {
-    margin-bottom: 10px;
-}
-
 
 .title {
 

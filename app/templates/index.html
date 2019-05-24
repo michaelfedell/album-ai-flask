@@ -1,81 +1,107 @@
 {% extends "base.html" %}
 
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
 {% block app_content %}
-<div class="col-md-5 p-0 h-md-100 accent">
-    <div class="content m-4 p-4">
-        <div id="title-box" class="title">
-            <h1>Welcome to Album.AI</h1>
+<div class="row">
+    <div class="col-md-5 p-0 h-md-100 fixed-top accent">
+        <div class="content m-3">
+            <div id="title-box" class="title">
+                <h1>Welcome to Album.AI</h1>
+            </div>
+            <div class="subtitle">
+                <h2>Can Neural Networks Solve the Taylor Swift Genre Dilemma?</h2>
+            </div>
+            <div id="authors">
+                <h3>A Deep Learning Project by:</h3>
+                <ul>
+                    <li>Alex Burzinski</li>
+                    <li>Ted Carlson</li>
+                    <li>Tony Colucci</li>
+                    <li>JD Cook</li>
+                    <li>James Fan</li>
+                    <li>Michael Fedell</li>
+                </ul>
+            </div>
+            <div id="game-button">
+                <a href="/game" class="btn btn-block btn-info">Play the Game!</a>
+            </div>
+            <div id="acknowledgements">
+                <p>Thanks for sponsoring and guiding this project to:</p>
+                <p>Diego Klabjan</p>
+                <p>Ellick Chan</p>
+            </div>
         </div>
-        <div class="subtitle">
-            <h2>Can Neural Networks Solve the Taylor Swift Genre Dilemma?</h2>
-        </div>
-        <div id="authors">
-            <h3>A Deep Learning Project by:</h3>
-            <ul>
-                <li>Alex Burzinski</li>
-                <li>Ted Carlson</li>
-                <li>Tony Colucci</li>
-                <li>JD Cook</li>
-                <li>James Fan</li>
-                <li>Michael Fedell</li>
-            </ul>
-        </div>
-        <div id="game-button">
-            <a href="#" class="btn btn-block btn-info">Play the Game!</a>
-        </div>
-        <div id="acknowledgements">
-            <p>Thanks for sponsoring and guiding this project to:</p>
-            <p>Diego Klabjan</p>
-            <p>Ellick Chan</p>
+    </div>
+
+    <div id="findings" class="col-md-7 offset-5 p-0 h-md-100">
+        <div class="content">
+            <h2>Our Findings</h2>
+
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque esse est illum incidunt laudantium
+                natus nobis optio, rerum temporibus! Amet earum laborum obcaecati tempore temporibus! Architecto error
+                ipsa ipsam quia.
+            </div>
+            <div>Enim iste similique ullam. Accusantium assumenda culpa, cupiditate dignissimos earum error, expedita
+                harum, hic illum impedit incidunt ipsam minima molestiae nihil nobis optio quidem rem repellat
+                reprehenderit soluta tempora voluptas.
+            </div>
+            <div>A accusamus alias aliquid amet atque dolore eaque, eius error, facere fuga minima neque numquam optio
+                quos ratione reiciendis reprehenderit unde. Earum, eligendi iste porro repellendus reprehenderit
+                similique velit voluptatum.
+            </div>
+            <div>Accusamus adipisci aspernatur assumenda beatae culpa debitis doloribus ducimus ea, eaque earum et
+                eveniet ex incidunt ipsam itaque maxime modi nisi odio omnis placeat quasi quibusdam similique sint
+                temporibus ullam!
+            </div>
+            <div>Aliquid aperiam at, blanditiis dolorem dolores, fugiat labore modi nostrum obcaecati pariatur
+                perspiciatis ratione repellendus, totam? Aperiam dignissimos, harum inventore molestiae omnis quaerat
+                recusandae sint voluptatem. Eos fuga placeat repudiandae.
+            </div>
+            <div>Consequatur consequuntur debitis, deserunt ea error esse eum fugiat illo in incidunt iste maxime
+                molestias, neque optio possimus quam quis sapiente similique sint ut? Aliquam delectus odio officia
+                quibusdam reprehenderit.
+            </div>
+            <div>Est omnis optio pariatur similique. Alias aperiam assumenda commodi corporis cupiditate debitis,
+                distinctio eos facere facilis impedit itaque laborum magnam neque, odio qui quod rem soluta vel veniam
+                vitae! Obcaecati?
+            </div>
+            <div>Accusamus, eligendi illo ipsam itaque, laudantium minima mollitia necessitatibus odit, praesentium quia
+                rem vel? Accusantium, amet architecto atque culpa dicta doloremque dolorum iure laudantium minima minus,
+                nemo odit veniam voluptatem.
+            </div>
+            <div>Ab amet aperiam, dicta esse, ipsam iure laboriosam, nam obcaecati possimus quidem totam voluptatum?
+                Asperiores at consectetur consequatur harum, iste natus similique! Aperiam doloribus dolorum explicabo
+                praesentium quos reiciendis tenetur.
+            </div>
+            <div>Blanditiis corporis natus odit quibusdam sequi. Alias architecto aspernatur culpa deserunt distinctio
+                dolorem facere fugit id ipsam laudantium libero magnam, maiores minima perspiciatis provident quisquam
+                tempora tempore velit vitae voluptas?
+            </div>
+            <div>Accusamus asperiores esse obcaecati veritatis voluptates. Beatae dicta dolores eum minus mollitia
+                nostrum odit officiis, quam quas quisquam quod temporibus voluptate. Culpa eius eveniet ipsa non odit
+                qui tenetur unde?
+            </div>
+            <div>Ab, accusamus accusantium distinctio dolor dolore dolores, doloribus exercitationem id illum impedit
+                incidunt ipsum iste labore, odio optio pariatur quibusdam? Assumenda eos, error eum illum quod repellat
+                repellendus vero? Cum.
+            </div>
+            <div>Dignissimos, et, veniam. Amet autem id iusto! Aperiam corporis, cupiditate debitis dignissimos fugiat
+                impedit ipsum maiores minus nemo odio, omnis quaerat quam quas quis repudiandae saepe sed tempore,
+                temporibus vel!
+            </div>
+            <div>Accusamus alias architecto at consequuntur dicta ducimus eaque est, et fuga fugit harum hic in incidunt
+                ipsum, libero magnam maiores neque quae quam quis quos saepe suscipit velit voluptates voluptatum!
+            </div>
+            <div>Aliquid asperiores culpa delectus, dicta dignissimos dolorem ducimus earum eius est harum illum iste
+                laborum molestiae nostrum obcaecati perferendis porro possimus quae quam reprehenderit sequi sunt,
+                tempore vitae voluptatem voluptatibus.
+            </div>
         </div>
     </div>
 </div>
-
-<div id="findings" class="col-md-7 p-0 h-md-100">
-    <div class="content">
-        <h2>Our Findings</h2>
-
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eius facilis modi nostrum pariatur
-            placeat
-            praesentium quo repellendus rerum, veniam? Deserunt distinctio ipsa minima quaerat quasi rem, repudiandae
-            sint
-            veniam.
-        </div>
-        <div>Ad animi, asperiores at facilis nobis possimus similique voluptate? Alias culpa dicta dolore dolorem
-            explicabo
-            facilis illo ipsa ipsum maxime, minus nam nesciunt, porro quasi quis rem repellendus reprehenderit tenetur.
-        </div>
-        <div>Ab aliquam amet at atque consectetur consequatur corporis deserunt doloremque doloribus eaque eius et, illo
-            iure maxime minus, officiis placeat ratione reiciendis, repellat soluta? Aut deserunt quidem ratione sed
-            tempore?
-        </div>
-        <div>Id, quasi, repudiandae. Adipisci commodi dicta illo iure iusto labore neque nostrum obcaecati officiis,
-            possimus praesentium quaerat similique, sint. Alias, architecto assumenda beatae consequatur cum delectus
-            inventore necessitatibus. Doloribus, eligendi.
-        </div>
-        <div>Beatae explicabo illum ipsum maxime tempore tenetur. Commodi culpa ex excepturi ipsam nam obcaecati quod
-            similique soluta? Aperiam architecto delectus in, ipsa libero nihil quisquam quos sint. Culpa illum, ipsam!
-        </div>
-        <div>Aliquid blanditiis error est ex inventore ipsam obcaecati. Accusantium modi necessitatibus officiis
-            perspiciatis provident repellendus. Adipisci, alias dolorem doloremque earum, error eum, harum magni maxime
-            natus placeat qui quisquam sequi.
-        </div>
-        <div>Beatae dolores earum expedita explicabo incidunt laborum laudantium modi nulla repellat saepe? Aut,
-            consequuntur dignissimos dolor dolore eveniet expedita iusto natus neque numquam perferendis possimus
-            praesentium quo quos temporibus voluptates?
-        </div>
-        <div>Accusamus alias atque, consequuntur debitis facilis hic in laboriosam nesciunt quaerat quas quia, tempore?
-            Asperiores eos esse facilis odit optio quam reiciendis ullam! Aut dolor dolore, praesentium ratione tenetur
-            totam.
-        </div>
-        <div>Alias architecto consectetur, delectus dolor, dolores, est eum fuga illum impedit ipsa labore magni nam non
-            sequi ullam veritatis vitae. Aliquid delectus in incidunt nostrum numquam placeat quia? Eum, facilis?
-        </div>
-        <div>Ab accusantium aliquam earum ex perferendis sapiente, tempora voluptates? Cum deserunt dolore eligendi
-            maiores
-            nostrum officiis quis sit vero vitae, voluptates! Ad amet asperiores beatae incidunt numquam obcaecati
-            repudiandae sed.
-        </div>
-    </div>
 </div>
 {% endblock %}

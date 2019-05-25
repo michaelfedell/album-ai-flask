@@ -5,8 +5,8 @@ from app.models import Album, Genre, Guess
 import random
 from sqlalchemy.sql.expression import func, select
 
-genres = Genre.query.all()
-genres = sorted(genres, key=lambda x: x.name)
+# genres = Genre.query.all()
+# genres = sorted(genres, key=lambda x: x.name)
 
 
 def get_random_album():
@@ -24,6 +24,9 @@ def index():
 
 @app.route('/game')
 def game():
+    genres = Genre.query.all()
+    genres = sorted(genres, key=lambda x: x.name)
+
     return render_template('game.html', album=get_random_album(), genres=genres)
 
 

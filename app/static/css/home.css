@@ -34,3 +34,17 @@
 #acknowledgements p:first-child {
     margin-bottom: 10px;
 }
+
+/* Take 90% height if window small, 100% height if larger */
+.h-md-100 { height: 90vh; }
+@media (min-width: 768px) {
+    .h-md-100 { height: 100vh; }
+    #title {
+        position: fixed;
+        display: block;
+    }
+    #findings {
+        display: block;
+        position: absolute;
+    }
+}

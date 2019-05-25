@@ -6,10 +6,12 @@ Flask==1.0.3
 Flask-Bootstrap4==4.0.2
 Flask-Migrate==2.5.2
 Flask-SQLAlchemy==2.4.0
+gunicorn==19.9.0
 itsdangerous==1.1.0
 Jinja2==2.10.1
 Mako==1.0.10
 MarkupSafe==1.1.1
+psycopg2==2.8.2
 python-dateutil==2.8.0
 python-dotenv==0.10.2
 python-editor==1.0.4

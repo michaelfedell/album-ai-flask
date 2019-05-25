@@ -31,8 +31,8 @@ class Genre(db.Model):
 class Guess(db.Model):
     guess_id = db.Column(db.Integer, primary_key=True)
 
-    album_id = db.Column(db.Integer, db.ForeignKey('album.album_id'))
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'))
+    album_id = db.Column(db.Integer, db.ForeignKey('album.album_id'))  # album guessed on
+    genre_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'))  # user's genre guess
 
     correct = db.Column(db.Boolean, nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

@@ -9,7 +9,7 @@
 {% block app_content %}
 <div class="row">
     <div id="prompt" class="col-md-5 p-0 h-md-100 bg-white align-text-bottom">
-        <div class="content m-4">
+        <div class="content">
             <div id="title-box" class="title">
                 <div class="row align-text-bottom">
                     <div class="col-8">
@@ -28,8 +28,17 @@
             </div>
         </div>
     </div>
-    <div id="game" class="col-md-7 p-4 h-100">
+    <div id="game" class="col-md-7 p-2 h-100">
         <div class="content">
+
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <a href="/game">
+                        <div class="option">I already know this album</div>
+                    </a>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12">
                     <div id="album-art">
@@ -38,24 +47,17 @@
                     </div>
                 </div>
             </div>
-            <div id="genres" class="">
-                <div class="row align-content-center">
-                    {% for genre in genres %}
-                    <div class="col-6 col-sm-3 align-content-center">
-                        <a href="/result?album={{album.album_id}}&guess={{ genre.genre_id }}">
-                            <div class="option">{{ genre.name }}</div>
-                        </a>
-                    </div>
-                    {% endfor %}
+
+            <div id="genres" class="row align-content-center">
+                {% for genre in genres %}
+                <div class="col-6 col-sm-3 align-content-center">
+                    <a href="/result?album={{album.album_id}}&guess={{ genre.genre_id }}">
+                        <div class="option">{{ genre.name }}</div>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-6 offset-3">
-                        <a href="/game">
-                            <div class="option">I already know this album</div>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+
         </div>
     </div>
 </div>

@@ -1,16 +1,60 @@
 {% extends "base.html" %}
 
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/game.css') }}">
+{% endblock %}
+
+
 {% block app_content %}
-<div id="prompt" class="col-md-5 p-0 h-md-100">
-    <div class="content m-4 p-4">
-        <div id="title-box" class="title">
-            <h1>Album.AI</h1>
-            <a href="/" id="home-link">Back to Paper</a>
+<div class="row">
+    <div id="prompt" class="col-md-5 p-0 h-md-100 accent align-text-bottom">
+        <div class="content">
+            <div id="title-box" class="title">
+                <div class="row align-text-bottom">
+                    <div class="col-8">
+                        <h1>Album.AI</h1>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a href="/" id="home-link">Back to Paper</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <h4>"{{ album.name }}" by {{ album.artist }}</h4>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="album-art">
+                            <img src="{{ url_for('static',filename='imgs/{}.jpg'.format(album.album_id)) }}"
+                                 class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+                <h3>Listed as: {{ genre_name }}</h3>
+                <p>(You guessed {{ genre_guessed }})</p>
+            </div>
+        </div>
+    </div>
+    <div id="game" class="col-md-7 p-2 h-md-100 bg-white">
+        <div class="content">
+
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <a href="/game">
+                        <div class="option">Guess Another</div>
+                    </a>
+                </div>
+            </div>
+            <h3>Want to see how you stack up?</h3>
+            <div class="row">
+                <div class="col-12">
+                    <img src="{{ url_for('static',filename='imgs/chart.png') }}"
+                         class="img-fluid" alt="">
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-<div id="game" class="col-md-7 p-0 h-md-100 accent">
-    <div class="content">
-    </div>
-</div>
+
 {% endblock %}

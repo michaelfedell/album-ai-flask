@@ -41,6 +41,10 @@ def result():
     print(correct)
     guess = Guess(album_id=album_id, genre_id=guess_id, correct=correct)
     print(guess)
+    genre_name = Genre.query.get(album.genre_id)
+    genre_guessed = Genre.query.get(guess_id)
+    print(genre_guessed)
     # db.session.add(guess)
     # db.session.commit()
-    return render_template('result.html', album=album, correct=correct)
+    return render_template('result.html', album=album, correct=correct,
+                           genre_name=genre_name.name, genre_guessed=genre_guessed.name)

@@ -1,0 +1,1 @@
+web: flask db upgrade; gunicorn beat_the_machine:app

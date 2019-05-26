@@ -8,8 +8,8 @@ def parse_album(row):
     album_id = row[4]
     prediction = row[5]
     confidence = row[6]
-    return Album(album_id=int(album_id), genre_id=(genre_id), name=name, prediction=int(prediction), artist=artist,
-                 confidence=confidence)
+    return Album(album_id=int(album_id), genre_id=int(genre_id), name=name,
+                 prediction_id=int(prediction), artist=artist, confidence=float(confidence))
 
 
 albums = []

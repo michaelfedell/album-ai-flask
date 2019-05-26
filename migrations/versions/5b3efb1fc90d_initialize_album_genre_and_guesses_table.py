@@ -1,8 +1,8 @@
 """initialize album genre and guesses table
 
-Revision ID: b7a170de442d
+Revision ID: 5b3efb1fc90d
 Revises: 
-Create Date: 2019-05-25 21:49:17.005899
+Create Date: 2019-05-25 22:23:54.410428
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b7a170de442d'
+revision = '5b3efb1fc90d'
 down_revision = None
 branch_labels = None
 depends_on = None

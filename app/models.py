@@ -15,6 +15,12 @@ class Album(db.Model):
 
     guesses = db.relationship('Guess', backref='album', lazy='dynamic')
 
+    genre = db.relationship('Genre', backref='albums'
+                             , primaryjoin='Genre.genre_id == foreign(Album.genre_id)')
+
+    prediction = db.relationship('Genre', backref='predictions'
+                                  , primaryjoin='Genre.genre_id == foreign(Album.prediction_id)')
+
     def __repr__(self):
         return '<{} by {}>'.format(self.name, self.artist)
 
@@ -23,12 +29,6 @@ class Genre(db.Model):
     genre_id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(32), unique=True, nullable=False)
-
-    albums = db.relationship('Album', backref='album'
-                             , primaryjoin='Album.genre_id == foreign(Genre.genre_id)')
-
-    predictions = db.relationship('Album', backref='prediction'
-                                  , primaryjoin='Album.prediction_id == foreign(Genre.genre_id)')
 
     def __repr__(self):
         return '<Genre: {}>'.format(self.name)

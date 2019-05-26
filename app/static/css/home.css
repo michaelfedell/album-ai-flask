@@ -4,11 +4,16 @@
 
 #authors ul {
     list-style: none;
-    font-size: 1.5em;
+    font-size: 1.25em;
+    line-height: 1.25;
 }
 
 #game-button {
     align-content: center;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
 }
 
 #game-button a {
@@ -32,17 +37,24 @@
 }
 
 #acknowledgements p:first-child {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 /* Take 90% height if window small, 100% height if larger */
-.h-md-100 { height: 90vh; }
+.h-md-100 {
+    height: 90vh;
+}
+
 @media (min-width: 768px) {
-    .h-md-100 { height: 100vh; }
+    .h-md-100 {
+        height: 100vh;
+    }
+
     #title {
         position: fixed;
         display: block;
     }
+
     #findings {
         display: block;
         position: absolute;

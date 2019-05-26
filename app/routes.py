@@ -47,7 +47,11 @@ def result():
     genre_name = Genre.query.get(album.genre_id)
     genre_guessed = Genre.query.get(guess_id)
     print(genre_guessed)
+    performance = [{'scope': 'album', 'humans': 0.348, 'album.ai': 0.213},
+                   {'scope': 'genre', 'humans': 0.263, 'album.ai': 0.401},
+                   {'scope': 'all', 'humans': 0.315, 'album.ai': 0.492}]
     # db.session.add(guess)
     # db.session.commit()
     return render_template('result.html', album=album, correct=correct,
-                           genre_name=genre_name.name, genre_guessed=genre_guessed.name)
+                           genre_name=genre_name.name, genre_guessed=genre_guessed.name,
+                           performance=performance)

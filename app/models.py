@@ -6,7 +6,7 @@ class Album(db.Model):
     album_id = db.Column(db.Integer, primary_key=True)
 
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'))
-    prediction = db.Column(db.Integer, db.ForeignKey('genre.genre_id'))
+    prediction_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'))
 
     name = db.Column(db.String(64), unique=False, nullable=False)
     artist = db.Column(db.String(64), unique=False, nullable=False)
@@ -23,6 +23,12 @@ class Genre(db.Model):
     genre_id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(32), unique=True, nullable=False)
+
+    albums = db.relationship('Album', backref='album'
+                             , primaryjoin='Album.genre_id == foreign(Genre.genre_id)')
+
+    predictions = db.relationship('Album', backref='prediction'
+                                  , primaryjoin='Album.prediction_id == foreign(Genre.genre_id)')
 
     def __repr__(self):
         return '<Genre: {}>'.format(self.name)

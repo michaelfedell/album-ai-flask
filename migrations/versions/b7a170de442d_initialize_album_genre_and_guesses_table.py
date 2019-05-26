@@ -1,8 +1,8 @@
-"""create tables
+"""initialize album genre and guesses table
 
-Revision ID: 8bb433ab5819
+Revision ID: b7a170de442d
 Revises: 
-Create Date: 2019-05-23 12:14:37.061234
+Create Date: 2019-05-25 21:49:17.005899
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8bb433ab5819'
+revision = 'b7a170de442d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,13 +27,13 @@ def upgrade():
     op.create_table('album',
     sa.Column('album_id', sa.Integer(), nullable=False),
     sa.Column('genre_id', sa.Integer(), nullable=True),
-    sa.Column('prediction', sa.Integer(), nullable=True),
+    sa.Column('prediction_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=64), nullable=False),
     sa.Column('artist', sa.String(length=64), nullable=False),
     sa.Column('year', sa.Integer(), nullable=True),
     sa.Column('confidence', sa.Float(), nullable=True),
     sa.ForeignKeyConstraint(['genre_id'], ['genre.genre_id'], ),
-    sa.ForeignKeyConstraint(['prediction'], ['genre.genre_id'], ),
+    sa.ForeignKeyConstraint(['prediction_id'], ['genre.genre_id'], ),
     sa.PrimaryKeyConstraint('album_id')
     )
     op.create_table('guess',

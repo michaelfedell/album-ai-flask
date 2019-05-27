@@ -22,6 +22,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/paper')
+def paper():
+    return render_template('paper.html')
+
+
 @app.route('/game')
 def game():
     genres = Genre.query.all()

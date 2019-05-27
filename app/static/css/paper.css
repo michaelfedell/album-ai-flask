@@ -1,0 +1,61 @@
+#authors {
+
+}
+
+#authors ul {
+    list-style: none;
+    font-size: 1.25em;
+    line-height: 1.25;
+}
+
+#game-button {
+    align-content: center;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+
+}
+
+#game-button a {
+    margin: 50px auto;
+    width: 250px;
+    font-size: 1.5em;
+}
+
+#acknowledgements {
+    text-align: center;
+    margin: 0 0 10px -30px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#acknowledgements p {
+    margin: 0;
+}
+
+#acknowledgements p:first-child {
+    margin-bottom: 5px;
+}
+
+/* Take 90% height if window small, 100% height if larger */
+.h-md-100 {
+    height: 90vh;
+}
+
+@media (min-width: 768px) {
+    .h-md-100 {
+        height: 100vh;
+    }
+
+    #title {
+        position: fixed;
+        display: block;
+    }
+
+    #findings {
+        display: block;
+        position: absolute;
+    }
+}

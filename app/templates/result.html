@@ -8,22 +8,22 @@
 
 {% block app_content %}
 <div class="row">
-    <div id="prompt" class="col-md-5 p-0 h-md-100 accent align-text-bottom">
+    <div id="prompt" class="col-md-5 p-0 h-md-100 align-text-bottom accent">
         <div class="content">
-            <div id="title-box" class="title">
+            <div id="title-box">
                 <div class="row align-text-bottom">
                     <div class="col-8">
-                        <h1>Album.AI</h1>
+                        <h1 class="title">Album.AI</h1>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="/" id="home-link">Back to Paper</a>
+                        <a href="/" id="home-link">Back Home</a>
                     </div>
                 </div>
             </div>
             <div class="text-center">
                 <h4>"{{ album.name }}" by {{ album.artist }}</h4>
-                <div class="row">
-                    <div class="col-12">
+                <div class="row my-3">
+                    <div class="col-10 offset-1">
                         <div id="album-art">
                             <img src="{{ url_for('static',filename='imgs/{}.jpg'.format(album.album_id)) }}"
                                  class="img-fluid" alt="">
@@ -35,21 +35,20 @@
             </div>
         </div>
     </div>
-    <div id="game" class="col-md-7 p-2 h-md-100 bg-white">
+    <div id="game" class="col-md-7 offset-md-5 p-2 h-100">
         <div class="content">
-
-            <div class="row">
-                <div class="col-8 offset-2">
-                    <a href="/game">
-                        <div class="option">Guess Another</div>
-                    </a>
-                </div>
-            </div>
-            <h3>Want to see how you stack up?</h3>
+            <h3 class="caption">Want to see how you stack up?</h3>
             <div class="row">
                 <div class="col-12">
                     <img src="{{ url_for('static',filename='imgs/chart.png') }}"
                          class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-8 col-sm-6 offset-sm-3 offset-2">
+                    <a href="/game" class="btn btn-main btn-block subtitle">
+                        Guess Another
+                    </a>
                 </div>
             </div>
 

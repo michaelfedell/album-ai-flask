@@ -1,3 +1,8 @@
+body {
+    color: #2A2D34;
+    font-family: 'Roboto', sans-serif;
+}
+
 #title-box {
     border-bottom: 5px solid black;
     margin-bottom: 10px;
@@ -13,13 +18,93 @@
 }
 
 .title {
-
+    font-family: 'Montserrat', sans-serif;
 }
 
 .subtitle {
-    color: #707070;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+#home-link {
+    color: #294b75;
+    font-weight: bold;
 }
 
 .content {
-    padding: 15px
+    padding: 20px
+}
+
+.black {
+    color: #2A2D34;
+}
+
+.white {
+    color: #F5F5F5;
+}
+
+.peach {
+    color: #E0896E;
+}
+
+.cream {
+    color: #e2e9e8;
+}
+
+.slate {
+    color: #6f95a8;
+}
+
+.navy {
+    color: #294b75;
+}
+
+.teal {
+    color: #a8dadc;
+}
+
+.grey {
+    color: #555555;
+}
+
+
+.btn-main {
+    color: #294B75;
+    background-color: #E2E9E8;
+    border: #dae1e0 solid 1px;
+}
+
+.btn-main:hover {
+    color: #294B75;
+    background-color: #dae1e0;
+    box-shadow: inset 0 0 2px #2A2D34;
+}
+
+.btn-slate {
+    color: #F5F5F5;
+    background-color: #6F95A8;
+    border: #dae1e0 solid 1px;
+}
+
+.btn-slate:hover {
+    color: #F5F5F5;
+    background-color: #658b9e;
+    box-shadow: inset 0 0 2px #2A2D34;
+}
+
+.btn-navy {
+    color: #F5F5F5;
+    background-color: #294B75;
+    border: #a8dadc solid 1px;
+}
+
+.btn-navy:hover {
+    color: #F5F5F5;
+    background-color: #2a547f;
+    box-shadow: inset 0 0 2px #2A2D34;
+}
+
+.btn {
+    border-radius: 5px;
 }

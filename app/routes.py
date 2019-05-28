@@ -56,15 +56,19 @@ def result():
     genre_name = genre.name
     genre_guessed = Genre.query.get(guess_id)
 
-    album_guesses = [gus.correct for gus in album.guesses.all()]
-    album_performance = sum(album_guesses) / len(album_guesses)
-    genre_guesses = [gus.correct for a in genre.albums
+    # Calculate performance for each scope. Note: we round(3) to limit numbers to percents to tenth
+    album_guesses = [int(gus.correct) for gus in album.guesses.all()]
+    album_performance = round(sum(album_guesses) / len(album_guesses), 3)
+
+    genre_guesses = [int(gus.correct) for a in genre.albums
                      for gus in a.guesses.all()]
-    genre_performance = sum(genre_guesses) / len(genre_guesses)
+    genre_performance = round(sum(genre_guesses) / len(genre_guesses), 3)
+
     total_performance = db.session.query(
         db.func.avg(Guess.correct.cast(db.Integer)).
             label('avg_correct'))\
         .scalar()
+    total_performance = round(total_performance, 3)
 
     performance = [{'scope': 'this album', 'humans': album_performance, 'model': album.confidence},
                    {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance

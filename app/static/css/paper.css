@@ -2,6 +2,10 @@
 
 }
 
+.subtitle {
+    font-size: 24px;
+}
+
 #authors ul {
     list-style: none;
     font-size: 1.25em;
@@ -11,7 +15,7 @@
 #game-button {
     align-content: center;
     position: absolute;
-    bottom: 60px;
+    bottom: 40px;
     left: 0;
     right: 0;
 
@@ -25,18 +29,22 @@
 
 #acknowledgements {
     text-align: center;
-    margin: 0 0 10px -30px;
+    margin: 0;
     width: 100%;
     position: absolute;
     bottom: 0;
+    left: 0;
 }
 
 #acknowledgements p {
     margin: 0;
+    font-size: 14px;
 }
+
 
 #acknowledgements p:first-child {
     margin-bottom: 5px;
+    font-size: 12px;
 }
 
 /* Take 90% height if window small, 100% height if larger */
@@ -48,6 +56,11 @@
     .h-md-100 {
         height: 100vh;
     }
+
+    .subtitle {
+        font-size: 28px;
+    }
+
 
     #title {
         position: fixed;

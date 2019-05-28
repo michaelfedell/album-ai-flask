@@ -16,12 +16,12 @@
                         <h1 class="title">Album.AI</h1>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="/" id="home-link">Back Home</a>
+                        <a href="/" id="home-link">Home</a>
                     </div>
                 </div>
             </div>
             <div class="text-center">
-                <h4>"{{ album.name }}" by {{ album.artist }}</h4>
+                <h4><em>"{{ album.name }}"</em> by {{ album.artist }}</h4>
                 <div class="row my-3">
                     <div class="col-10 offset-1">
                         <div id="album-art">
@@ -30,30 +30,187 @@
                         </div>
                     </div>
                 </div>
-                <h3>Listed as: {{ genre_name }}</h3>
-                <p>(You guessed {{ genre_guessed }})</p>
+                <h3>Listed as: <span class="genre">{{ genre_name }}</span></h3>
+                <p>(You guessed <span class="genre">{{ genre_guessed }}</span>)</p>
             </div>
         </div>
     </div>
     <div id="game" class="col-md-7 offset-md-5 h-100">
         <div class="content">
-            <h3 class="caption">Want to see how you stack up?</h3>
-            <div class="row">
-                <div class="col-12">
-                    <img src="{{ url_for('static',filename='imgs/chart.png') }}"
-                         class="img-fluid" alt="">
-                </div>
-            </div>
-            <div class="row mt-3">
+            <div class="row my-3">
                 <div class="col-8 col-sm-6 offset-sm-3 offset-2">
                     <a href="/game" class="btn btn-main btn-block subtitle">
                         Guess Another
                     </a>
                 </div>
             </div>
+            <h2 class="caption">
+                {% if correct %}
+                Spot on! Nice Guess!
+                {% else %}
+                Not quite...
+                {% endif %}
+            </h2>
+            <h3 class="caption">Want to see how you stack up?</h3>
+            <div class="row">
+                <div id="chart" class="col-12">
+                </div>
+            </div>
 
         </div>
     </div>
 </div>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+    var data = {{ performance | safe }};
+    console.log(data);
+    height = 300;
+    margin = ({top: 40, right: 30, bottom: 20, left: 20});
+    width = parseInt(d3.select('#chart').style('width'), 10);
+    width = width - margin.left - margin.right;
+    console.log(width)
+    keys = ['humans', 'model'];
+    groupKey = 'scope';
+    percent = d3.format('.1%');
+
+    yAxis = g => g
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(d3.axisLeft(y).ticks(null).tickFormat(percent))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.select(".tick:last-of-type text").clone()
+            .attr("x", 3)
+            .attr("text-anchor", "start")
+            .attr("font-weight", "bold")
+            .text('Accuracy'));
+
+    xAxis = g => g
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x0).tickSizeOuter(0))
+        .call(g => g.select(".domain").remove());
+
+    color = d3.scaleOrdinal()
+        .range(["#6f95a8", "#28426b"]);
+
+    y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d3.max(keys, key => d[key]))]).nice()
+        .rangeRound([height - margin.bottom, margin.top]);
+
+    x0 = d3.scaleBand()
+        .domain(data.map(d => d[groupKey]))
+        .rangeRound([margin.left, width - margin.right])
+        .paddingInner(0.1);
+
+    x1 = d3.scaleBand()
+        .domain(keys)
+        .rangeRound([0, x0.bandwidth()])
+        .padding(0.05);
+
+    legend = svg => {
+        const g = svg
+            .attr("transform", `translate(${margin.left},-20)`)
+            .attr("font-family", "sans-serif")
+            .attr("font-size", 10)
+            .selectAll("g")
+            .data(color.domain().slice())
+            .join("g")
+            .attr("transform", (d, i) => `translate(0,${i * 20})`);
+
+        g.append("rect")
+            .attr("x", 0)
+            .attr("width", 19)
+            .attr("height", 19)
+            .attr("fill", color);
+
+        g.append("text")
+            .attr("x", 24)
+            .attr("y", 9.5)
+            .attr("dy", "0.35em")
+            .text(d => d);
+    };
+
+  const svg = d3.select('#chart').append('svg')
+      .attr('class', 'name')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+    bars = svg.append("g")
+        .selectAll("g")
+        .data(data)
+        .join("g")
+        .attr("transform", d => `translate(${x0(d[groupKey])},0)`);
+
+    bars.selectAll("rect")
+        .data(d => keys.map(key => ({key, value: d[key]})))
+        .join("rect")
+        .attr("x", d => x1(d.key))
+        .attr("width", x1.bandwidth())
+        .attr("y", d => y(0))
+        .attr("height", 0)
+        .transition().ease(d3.easeCircle).duration(500)
+        .attr("y", d => y(d.value))
+        .attr("height", d => y(0) - y(d.value))
+        .attr("fill", d => color(d.key))
+    bars.selectAll("text")
+        .data(d => keys.map(key => ({key, value: d[key]})))
+        .join('text')
+        .attr('class', 'bar-label')
+        .text(d => percent(d.value))
+        .attr("x", d => x1(d.key) + x1.bandwidth() / 2)
+        .attr("y", d => y(0))
+        .transition().ease(d3.easeCircle).duration(500)
+        .attr('y', d => y(d.value) + 15);
+
+
+    xax = svg.append("g")
+        .call(xAxis);
+
+
+    // svg.append("g")
+    //     .call(yAxis);
+
+    leg = svg.append("g")
+        .call(legend);
+
+
+    document.addEventListener("DOMContentLoaded", resize);
+    d3.select(window).on('resize', resize);
+
+    function resize() {
+        console.log('----resize function----');
+        // update width
+        width = parseInt(d3.select('#chart').style('width'), 10);
+        width = width - margin.left - margin.right;
+
+        // height = parseInt(d3.select("#chartID").style("height"));
+        // height = height - margin.top - margin.bottom;
+        console.log('----resiz width----' + width);
+        console.log('----resiz height----' + height);
+        // resize the chart
+
+        x0.rangeRound([margin.left, width - margin.right]);
+        x1.rangeRound([0, x0.bandwidth()]);
+
+
+        d3.select(svg.node().parentNode)
+            .style('width', (width + margin.left + margin.right) + 'px');
+
+        bars.attr("transform", d => `translate(${x0(d[groupKey])},0)`);
+        bars.selectAll('rect')
+            .attr("x", d => x1(d.key))
+            .attr("width", x1.bandwidth());
+        bars.selectAll("text")
+            .attr("x", d => x1(d.key) + x1.bandwidth() / 2);
+
+        xax.call(xAxis);
+
+
+    }
+
+
+</script>
+
 
 {% endblock %}

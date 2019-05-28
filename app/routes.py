@@ -61,7 +61,10 @@ def result():
     genre_guesses = [gus.correct for a in genre.albums
                      for gus in a.guesses.all()]
     genre_performance = sum(genre_guesses) / len(genre_guesses)
-    total_performance = db.session.query(db.func.avg(Guess.correct).label('avg_correct')).scalar()
+    total_performance = db.session.query(
+        db.func.avg(Guess.correct.cast(db.Integer)).
+            label('avg_correct'))\
+        .scalar()
 
     performance = [{'scope': 'this album', 'humans': album_performance, 'model': album.confidence},
                    {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance

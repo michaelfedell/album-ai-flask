@@ -5,6 +5,7 @@ from app.models import Album, Genre, Guess
 import random
 import json
 
+
 # genres = Genre.query.all()
 # genres = sorted(genres, key=lambda x: x.name)
 
@@ -39,24 +40,33 @@ def game():
 def result():
     album_id = request.args.get('album')
     album = Album.query.get(album_id)
-    print(album)
     if not album:
         print('ALBUM NOT FOUND')
         return
+
+    # Build Guess object and save to database
     guess_id = int(request.args.get('guess'))
-    print(guess_id)
     correct = album.genre_id == guess_id
-    print(correct)
     guess = Guess(album_id=album_id, genre_id=guess_id, correct=correct)
-    print(guess)
-    genre_name = Genre.query.get(album.genre_id)
+    db.session.add(guess)
+    db.session.commit()
+
+    # Get genre information for this page
+    genre = Genre.query.get(album.genre_id)
+    genre_name = genre.name
     genre_guessed = Genre.query.get(guess_id)
-    print(genre_guessed)
-    performance = [{'scope': 'this album', 'humans': 0.348, 'model': 0.213},
-                   {'scope': 'this genre', 'humans': 0.263, 'model': 0.401},
-                   {'scope': 'all albums', 'humans': 0.315, 'model': 0.492}]
-    # db.session.add(guess)
-    # db.session.commit()
+
+    album_guesses = [gus.correct for gus in album.guesses.all()]
+    album_performance = sum(album_guesses) / len(album_guesses)
+    genre_guesses = [gus.correct for a in genre.albums
+                     for gus in a.guesses.all()]
+    genre_performance = sum(genre_guesses) / len(genre_guesses)
+    total_performance = db.session.query(db.func.avg(Guess.correct).label('avg_correct')).scalar()
+
+    performance = [{'scope': 'this album', 'humans': album_performance, 'model': album.confidence},
+                   {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance
+                   {'scope': 'all albums', 'humans': total_performance, 'model': 0.215}]  # 0.215 will be static based on model's final acc
+
     return render_template('result.html', album=album, correct=correct,
-                           genre_name=genre_name.name, genre_guessed=genre_guessed.name,
+                           genre_name=genre_name, genre_guessed=genre_guessed.name,
                            performance=json.dumps(performance, indent=2))

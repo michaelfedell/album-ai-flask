@@ -27,9 +27,17 @@ body {
     font-size: 22px;
 }
 
+h2.caption {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h3.caption {
+    font-size: 18px;
+}
+
 .caption {
     text-align: center;
-    font-size: 20px;
 }
 
 .bar-label {
@@ -63,6 +71,7 @@ body {
     .bar-label {
         font-size: 14px;
     }
+
     .btn-main {
         font-size: 26px;
     }
@@ -71,8 +80,19 @@ body {
         text-align: left;
     }
 
+    h2.caption {
+        font-size: 28px;
+    }
+
+    h3.caption {
+        font-size: 22px;
+    }
+
+
 }
 
 @media (max-width: 400px) {
-    .bar-label { font-size: 8px; }
+    .bar-label {
+        font-size: 8px;
+    }
 }

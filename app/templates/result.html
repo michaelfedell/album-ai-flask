@@ -44,6 +44,13 @@
                     </a>
                 </div>
             </div>
+            <h2 class="caption">
+                {% if correct %}
+                Spot on! Nice Guess!
+                {% else %}
+                Not quite...
+                {% endif %}
+            </h2>
             <h3 class="caption">Want to see how you stack up?</h3>
             <div class="row">
                 <div id="chart" class="col-12">

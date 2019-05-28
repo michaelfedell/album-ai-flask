@@ -29,7 +29,14 @@ p {
     border-radius: 5px;
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 992px) {
+    a.subtitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
     .center {
         text-align: center;
         align-content: center;
@@ -39,4 +46,9 @@ p {
         /* bring your own prefixes */
         transform: translate(-12.5%, -50%);
     }
+
+    a.subtitle {
+        font-size: 20px;
+    }
 }
+

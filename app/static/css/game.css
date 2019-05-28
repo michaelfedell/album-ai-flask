@@ -32,6 +32,18 @@ body {
     font-size: 20px;
 }
 
+.bar-label {
+    color: white;
+    fill: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-anchor: middle;
+}
+
+.genre {
+    font-weight: bold;
+    text-transform: capitalize;
+}
 
 /*.h-md-100 { height: 40vh; }*/
 @media (min-width: 762px) {
@@ -48,6 +60,9 @@ body {
         display: block;
     }
 
+    .bar-label {
+        font-size: 14px;
+    }
     .btn-main {
         font-size: 26px;
     }
@@ -55,4 +70,9 @@ body {
     .caption {
         text-align: left;
     }
+
+}
+
+@media (max-width: 400px) {
+    .bar-label { font-size: 8px; }
 }

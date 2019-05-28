@@ -1,10 +1,12 @@
 body {
     color: #2A2D34;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 75px;
 }
 
 #title-box {
     border-bottom: 5px solid black;
+    padding-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -22,7 +24,7 @@ body {
 }
 
 .subtitle {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 700;
     text-transform: capitalize;
 }

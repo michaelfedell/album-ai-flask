@@ -3,7 +3,7 @@ from flask import request
 from app import app, db
 from app.models import Album, Genre, Guess
 import random
-from sqlalchemy.sql.expression import func, select
+import json
 
 # genres = Genre.query.all()
 # genres = sorted(genres, key=lambda x: x.name)
@@ -52,11 +52,11 @@ def result():
     genre_name = Genre.query.get(album.genre_id)
     genre_guessed = Genre.query.get(guess_id)
     print(genre_guessed)
-    performance = [{'scope': 'album', 'humans': 0.348, 'album.ai': 0.213},
-                   {'scope': 'genre', 'humans': 0.263, 'album.ai': 0.401},
-                   {'scope': 'all', 'humans': 0.315, 'album.ai': 0.492}]
+    performance = [{'scope': 'this album', 'humans': 0.348, 'model': 0.213},
+                   {'scope': 'this genre', 'humans': 0.263, 'model': 0.401},
+                   {'scope': 'all albums', 'humans': 0.315, 'model': 0.492}]
     # db.session.add(guess)
     # db.session.commit()
     return render_template('result.html', album=album, correct=correct,
                            genre_name=genre_name.name, genre_guessed=genre_guessed.name,
-                           performance=performance)
+                           performance=json.dumps(performance, indent=2))

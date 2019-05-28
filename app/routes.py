@@ -68,12 +68,7 @@ def result():
         db.func.avg(Guess.correct.cast(db.Integer)).
             label('avg_correct'))\
         .scalar()
-    total_performance = round(total_performance, 3)
-
-    print(type(total_performance))
-    print(type(genre_performance))
-    print(type(album_performance))
-    print(type(album.confidence))
+    total_performance = round(float(total_performance), 3)
 
     performance = [{'scope': 'this album', 'humans': album_performance, 'model': round(float(album.confidence), 3)},
                    {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance

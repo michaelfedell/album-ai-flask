@@ -70,7 +70,7 @@ def result():
         .scalar()
     total_performance = round(float(total_performance), 3)
 
-    performance = [{'scope': 'this album', 'humans': album_performance, 'model': round(float(album.confidence), 3)},
+    performance = [{'scope': 'this album', 'humans': album_performance, 'model': round(float(album.confidence or 0.15), 3)},
                    {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance
                    {'scope': 'all albums', 'humans': total_performance, 'model': 0.215}]  # 0.215 will be static based on model's final acc
 

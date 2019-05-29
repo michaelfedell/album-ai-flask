@@ -25,7 +25,7 @@
                 <div class="row my-3">
                     <div class="col-10 offset-1">
                         <div id="album-art">
-                            <img src="{{ url_for('static',filename='imgs/{}.jpg'.format(album.album_id)) }}"
+                            <img src="{{ url_for('static',filename='imgs/albums/{}.jpg'.format(album.album_id)) }}"
                                  class="img-fluid" alt="">
                         </div>
                     </div>
@@ -52,6 +52,10 @@
                 {% endif %}
             </h2>
             <h3 class="caption">Want to see how you stack up?</h3>
+            <p class="caption">The model thought that this was <span class="genre">{{ album.prediction.name }}</span>
+            </p>
+            <p class="caption">Below you can see how humans match up to the model on this album as well as all albums in
+                this genre and across the entire dataset</p>
             <div class="row">
                 <div id="chart" class="col-12">
                 </div>
@@ -129,12 +133,12 @@
             .text(d => d);
     };
 
-  const svg = d3.select('#chart').append('svg')
-      .attr('class', 'name')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    const svg = d3.select('#chart').append('svg')
+        .attr('class', 'name')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     bars = svg.append("g")
         .selectAll("g")

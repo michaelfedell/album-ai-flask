@@ -2,7 +2,6 @@ body {
     background-color: #F5F5F5;
 }
 
-
 #prompt p {
     font-size: 1.25em;
 }
@@ -38,6 +37,11 @@ h3.caption {
 
 .caption {
     text-align: center;
+}
+
+.chart-info {
+    color: #555555;
+    margin-top: 0;
 }
 
 .bar-label {
@@ -87,8 +91,6 @@ h3.caption {
     h3.caption {
         font-size: 22px;
     }
-
-
 }
 
 @media (max-width: 400px) {

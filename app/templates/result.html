@@ -31,7 +31,10 @@
                     </div>
                 </div>
                 <h3>Listed as: <span class="genre">{{ genre_name }}</span></h3>
-                <p>(You guessed <span class="genre">{{ genre_guessed }}</span>)</p>
+                <p>You guessed: <span class="genre">{{ genre_guessed }}</span><br>
+                    Model guessed: <span class="genre">{{ album.prediction.name }}</span>
+                </p>
+
             </div>
         </div>
     </div>
@@ -52,13 +55,19 @@
                 {% endif %}
             </h2>
             <h3 class="caption">Want to see how you stack up?</h3>
-            <p class="caption">The model thought that this was <span class="genre">{{ album.prediction.name }}</span>
-            </p>
-            <p class="caption">Below you can see how humans match up to the model on this album as well as all albums in
-                this genre and across the entire dataset</p>
+            <p class="">Below you can see how humans match up to the model on various levels!</p>
             <div class="row">
-                <div id="chart" class="col-12">
+                <div id="chart" class="col-12 mb-0">
                 </div>
+                <p class="chart-info">Values indicate the % of people who have guessed correctly compared to the model's accuracy on
+                    <strong>this album</strong>,
+                    all albums in <strong>this genre</strong>, and <strong>all albums</strong> across the entire dataset
+                </p>
+
+                <p class="small grey">
+                    <em>note: human accuracy values are continuously updated as you play - if the bar is missing,
+                        then no humans have yet guessed this album correctly</em>
+                </p>
             </div>
 
         </div>
@@ -112,8 +121,9 @@
 
     legend = svg => {
         const g = svg
-            .attr("transform", `translate(${margin.left},-20)`)
+            .attr("transform", `translate(${width - margin.right - margin.left},20)`)
             .attr("font-family", "sans-serif")
+            .attr('class', 'legend')
             .attr("font-size", 10)
             .selectAll("g")
             .data(color.domain().slice())
@@ -127,7 +137,9 @@
             .attr("fill", color);
 
         g.append("text")
-            .attr("x", 24)
+            .attr("x", -5)
+            .style('text-anchor', 'end')
+            .style('text-align', 'right')
             .attr("y", 9.5)
             .attr("dy", "0.35em")
             .text(d => d);
@@ -178,20 +190,25 @@
     leg = svg.append("g")
         .call(legend);
 
+    title = svg.append('g')
+        .append('text')
+        .attr('x', width / 2)
+        .style('text-anchor', 'middle')
+        .style('text-align', 'center')
+        .style('font-size', '20px')
+        .attr('class', 'chart-title')
+        .text('Humans vs Model:   % Accuracy');
 
     document.addEventListener("DOMContentLoaded", resize);
     d3.select(window).on('resize', resize);
 
     function resize() {
-        console.log('----resize function----');
         // update width
         width = parseInt(d3.select('#chart').style('width'), 10);
         width = width - margin.left - margin.right;
 
-        // height = parseInt(d3.select("#chartID").style("height"));
-        // height = height - margin.top - margin.bottom;
-        console.log('----resiz width----' + width);
-        console.log('----resiz height----' + height);
+        console.log('----resize width----' + width);
+        console.log('----resize height----' + height);
         // resize the chart
 
         x0.rangeRound([margin.left, width - margin.right]);
@@ -207,7 +224,13 @@
             .attr("width", x1.bandwidth());
         bars.selectAll("text")
             .attr("x", d => x1(d.key) + x1.bandwidth() / 2);
-
+        title.attr('x', width / 2);
+        if (width < 290) {
+            title.style('font-size', '16px')
+        } else{
+            title.style('font-size', '22px')
+        }
+        d3.select('.legend').attr("transform", `translate(${width - margin.right - margin.left},20)`);
         xax.call(xAxis);
 
 

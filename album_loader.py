@@ -1,4 +1,6 @@
 import pandas as pd
+import random
+
 from app import db
 from app.models import Genre, Album
 
@@ -26,7 +28,8 @@ genre_map = {g.name: g.genre_id for g in genres}
 for album in joined.itertuples():
     db.session.merge(Album(album_id=album.album_id,
                            genre_id=genre_map.get(album.genre),
-                           prediction_id=None,
-                           name=album.album, artist=album.artist))
+                           prediction_id=list(genre_map.values())[random.randint(0, 7)],
+                           confidence=random.random() * 0.4,
+                           name=album.album[:60], artist=album.artist))
 
 db.session.commit()

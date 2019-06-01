@@ -5,8 +5,6 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
-{% block title %}Home{% endblock %}}
-
 {% block app_content %}
 <div class="center">
     <h1 class="title">Album.AI</h1>
@@ -15,7 +13,8 @@
         Grad students from Northwestern leverage deep neural networks to classify the genre of albums based on their
         cover art. Some 15,000 albums were scraped from
         <a href="https://www.albumoftheyear.org/" target="_blank">Album Of The Year</a>
-        to train the model; a random sample including ~50 albums from each of the 8 genres are utilized in this website.
+        to train the model; a random sample including ~50 albums from each of the 8 genres are presented
+        on this website (your guesses form a baseline for evaluating the model).
     </p>
     <div class="row">
         <div class="col-md-2 col-lg-3"></div>
@@ -27,6 +26,7 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+    <p class="mt-2">{{ num_guesses }} guesses have been recorded so far!</p>
 
 </div>
 {% endblock %}

@@ -20,12 +20,12 @@ def get_random_album():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', num_guesses=Guess.query.count())
 
 
 @app.route('/paper')
 def paper():
-    return render_template('paper.html')
+    return render_template('paper.html', title='Paper')
 
 
 @app.route('/game')
@@ -33,7 +33,7 @@ def game():
     genres = Genre.query.all()
     genres = sorted(genres, key=lambda x: x.name)
 
-    return render_template('game.html', album=get_random_album(), genres=genres)
+    return render_template('game.html', album=get_random_album(), genres=genres, title='Game')
 
 
 @app.route('/result')
@@ -76,4 +76,4 @@ def result():
 
     return render_template('result.html', album=album, correct=correct,
                            genre_name=genre_name, genre_guessed=genre_guessed.name,
-                           performance=json.dumps(performance, indent=2))
+                           performance=json.dumps(performance, indent=2), title='Results')

@@ -29,6 +29,7 @@ class Genre(db.Model):
     genre_id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(32), unique=True, nullable=False)
+    model_performance = db.Column(db.Float, nullable=True)
 
     def __repr__(self):
         return '<Genre: {}>'.format(self.name)

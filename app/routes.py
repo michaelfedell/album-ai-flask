@@ -71,8 +71,8 @@ def result():
     total_performance = round(float(total_performance), 3)
 
     performance = [{'scope': 'this album', 'humans': album_performance, 'model': round(float(album.confidence or 0.15), 3)},
-                   {'scope': 'this genre', 'humans': genre_performance, 'model': 0.401},  # replace 0.401 with genre.model_performance
-                   {'scope': 'all albums', 'humans': total_performance, 'model': 0.215}]  # 0.215 will be static based on model's final acc
+                   {'scope': 'this genre', 'humans': genre_performance, 'model': genre.model_performance},  # replace 0.401 with genre.model_performance
+                   {'scope': 'all albums', 'humans': total_performance, 'model': 0.225}]  # 0.225 will be static based on model's final acc
 
     return render_template('result.html', album=album, correct=correct,
                            genre_name=genre_name, genre_guessed=genre_guessed.name,

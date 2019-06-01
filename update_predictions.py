@@ -26,14 +26,14 @@ p = {'country': 0.2727,
      'electronic': 0.3750,
      'folk': 0.1667,
      'indie': 0.1020,
-     'metal': 0.7500,
+     'metal': 0.4375,
      'pop': 0.1702,
      'rap': 0.930,
      'rock': 0.1667}
 
 for g in p.keys():
-    g = Genre.query.get(genre_map.get(g))
-    g.model_performance = p.get(g)
-    db.session.merge(g)
+    genre = Genre.query.get(genre_map.get(g))
+    genre.model_performance = p.get(g)
+    db.session.merge(genre)
 
 db.session.commit()

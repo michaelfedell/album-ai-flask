@@ -48,69 +48,157 @@
 
     <div id="findings" class="col-md-7 offset-md-5 h-md-100">
         <div class="content">
-            <h2>Our Findings</h2>
-            <h4>This content is not quite ready... come back in a couple weeks to read more about our methodology and results!</h4>
-            <p>In the meantime, feel free to help us translate this latin</p>
+            <h2>Problem Statement</h2>
+            <p>
+                Can you determine the genre of an album based on the cover art alone? Album cover design choices can
+                greatly impact how an album is thought of before a consumer even listens to the album. These choices are
+                not random. It won’t surprise anyone to hear that the way a country musician wants to present their
+                album aesthetically is much different than that of a metal band. Creating a qualitative model for this
+                initial consumer impression would allow record companies an opportunity to analyze what message an album
+                cover is subconsciously broadcasting to its audience. This is a challenging task because AI cannot pick
+                up on aesthetic and cultural references that album covers often have. A handful of papers have tried to
+                solve this problem with minimal to moderate success.</p>
 
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque esse est illum incidunt laudantium
-                natus nobis optio, rerum temporibus! Amet earum laborum obcaecati tempore temporibus! Architecto error
-                ipsa ipsam quia.
-            </div>
-            <div>Enim iste similique ullam. Accusantium assumenda culpa, cupiditate dignissimos earum error, expedita
-                harum, hic illum impedit incidunt ipsam minima molestiae nihil nobis optio quidem rem repellat
-                reprehenderit soluta tempora voluptas.
-            </div>
-            <div>A accusamus alias aliquid amet atque dolore eaque, eius error, facere fuga minima neque numquam optio
-                quos ratione reiciendis reprehenderit unde. Earum, eligendi iste porro repellendus reprehenderit
-                similique velit voluptatum.
-            </div>
-            <div>Accusamus adipisci aspernatur assumenda beatae culpa debitis doloribus ducimus ea, eaque earum et
-                eveniet ex incidunt ipsam itaque maxime modi nisi odio omnis placeat quasi quibusdam similique sint
-                temporibus ullam!
-            </div>
-            <div>Aliquid aperiam at, blanditiis dolorem dolores, fugiat labore modi nostrum obcaecati pariatur
-                perspiciatis ratione repellendus, totam? Aperiam dignissimos, harum inventore molestiae omnis quaerat
-                recusandae sint voluptatem. Eos fuga placeat repudiandae.
-            </div>
-            <div>Consequatur consequuntur debitis, deserunt ea error esse eum fugiat illo in incidunt iste maxime
-                molestias, neque optio possimus quam quis sapiente similique sint ut? Aliquam delectus odio officia
-                quibusdam reprehenderit.
-            </div>
-            <div>Est omnis optio pariatur similique. Alias aperiam assumenda commodi corporis cupiditate debitis,
-                distinctio eos facere facilis impedit itaque laborum magnam neque, odio qui quod rem soluta vel veniam
-                vitae! Obcaecati?
-            </div>
-            <div>Accusamus, eligendi illo ipsam itaque, laudantium minima mollitia necessitatibus odit, praesentium quia
-                rem vel? Accusantium, amet architecto atque culpa dicta doloremque dolorum iure laudantium minima minus,
-                nemo odit veniam voluptatem.
-            </div>
-            <div>Ab amet aperiam, dicta esse, ipsam iure laboriosam, nam obcaecati possimus quidem totam voluptatum?
-                Asperiores at consectetur consequatur harum, iste natus similique! Aperiam doloribus dolorum explicabo
-                praesentium quos reiciendis tenetur.
-            </div>
-            <div>Blanditiis corporis natus odit quibusdam sequi. Alias architecto aspernatur culpa deserunt distinctio
-                dolorem facere fugit id ipsam laudantium libero magnam, maiores minima perspiciatis provident quisquam
-                tempora tempore velit vitae voluptas?
-            </div>
-            <div>Accusamus asperiores esse obcaecati veritatis voluptates. Beatae dicta dolores eum minus mollitia
-                nostrum odit officiis, quam quas quisquam quod temporibus voluptate. Culpa eius eveniet ipsa non odit
-                qui tenetur unde?
-            </div>
-            <div>Ab, accusamus accusantium distinctio dolor dolore dolores, doloribus exercitationem id illum impedit
-                incidunt ipsum iste labore, odio optio pariatur quibusdam? Assumenda eos, error eum illum quod repellat
-                repellendus vero? Cum.
-            </div>
-            <div>Dignissimos, et, veniam. Amet autem id iusto! Aperiam corporis, cupiditate debitis dignissimos fugiat
-                impedit ipsum maiores minus nemo odio, omnis quaerat quam quas quis repudiandae saepe sed tempore,
-                temporibus vel!
-            </div>
-            <div>Accusamus alias architecto at consequuntur dicta ducimus eaque est, et fuga fugit harum hic in incidunt
-                ipsum, libero magnam maiores neque quae quam quis quos saepe suscipit velit voluptates voluptatum!
-            </div>
-            <div>Aliquid asperiores culpa delectus, dicta dignissimos dolorem ducimus earum eius est harum illum iste
-                laborum molestiae nostrum obcaecati perferendis porro possimus quae quam reprehenderit sequi sunt,
-                tempore vitae voluptatem voluptatibus.
-            </div>
+            <h3>Dataset</h3>
+            <p>
+                Our dataset contains 15,000 album covers and genres scraped from the AlbumOfTheYear.org website. All of
+                the albums with multiple genres assigned to them needed to be assigned to exactly one of our 8 genres.
+                We chose to assign these based off whichever genre was listed first, or if any of the genres contained
+                key words. We had to resize the images to size 64x64 from their original sizes. While this didn’t prove
+                too difficult, it was an additional step in our process.
+            </p>
+            <p>
+                In order to supplement our predictions from our VGG model, we used object detection to detect which
+                objects are present in the album covers. It took quite a while to process our images. Based on our album
+                size of 64x64, even with only one convolutional block, our model has almost 8.5 million parameters to
+                train.
+            </p>
+            <p>
+                During the project, we augmented our album covers by flipping them in order to prevent the machine from
+                using the position of record labels or other non-cover art icons in its classification. Rock, Pop and
+                Indie were our three biggest genres with about 2,500 covers each; folk, hip hop and electronic had about
+                1,000 covers each, which we believe is adequate; and metal and folk had 700 covers each, which was at
+                the very low end of what we believed was a viable training set.
+            </p>
+            <!-- <p>
+                An example of an album cover and the corresponding data we collected:
+            </p> -->
+            <!-- TODO: Include image and table -->
+            <p>
+                As we eventually found out from our app, identifying genres of certain albums can range from trivial to a
+                complete guess.
+                <!-- Below is an example of a very easy genre for a human to identify, however this was a
+                more difficult task for the computer. -->
+            </p>
+            <!-- TODO: Include image -->
+
+
+            <h3>Technical Approach</h3>
+            <!-- TODO: Include network diagram -->
+            <h5>In Summary:</h5>
+            <ol>
+                <li>Collect album cover artwork from AlbumOfTheYear.org</li>
+                <li>Resize and reformat the album cover images</li>
+                <li>Create and train initial VGG model</li>
+                <li>Validate accuracy of model, and iteratively update</li>
+                <li>Augment classification with the help of an object detector</li>
+            </ol>
+
+            <p>
+                Our VGG model was created using 2 convolutional layers followed by 2 fully connected layers. The
+                convolutional layers used a kernel size of 3 by 3, with a stroke of 1. The fully connected layers each
+                had 128 nodes. This model used dropout in the two fully connected layers. This helped us
+                preventoverfitting by varying the nodes that were being trained by excluding some during each batch.
+            </p>
+            <p>
+                Generally, any models that were deeper than the 2 convolutional layers and 2 fully connected layers
+                were too deep. They didn’t perform as well as only 4 layers. We think this is because, for our
+                problem, the model isn’t trying to find a specific image, but rather an abstract feeling or
+                symbolism associated with different genres. For example, not all metal albums will have the same
+                image, but they are generally all dark or black backgrounds, and many have red text, while
+                electronic albums generally have more colorful album covers.
+            </p>
+            <p>
+                During model training, we tried varying the number of convolutional layers from 0 to 5 and the number of
+                fully connected layers from 1 to 3. We also attempted to use L1 Regularization (Lasso Regression) and a
+                Leaky Relu activation function. However, neither L1 Regularization nor the Leaky Relu seemed to improve
+                our VGG model.
+            </p>
+            <p>
+                The object detector we used is a pre-trained model known as Mask R-CNN. This model has about 80
+                different object categories. We thought this model would be good for our use case as many of the object
+                categories can be found on the album artwork (such as people, cars, etc).
+            </p>
+            <p>
+                Our final model attempted to combine the results of our VGG model with the results of the object
+                detector by creating a simple neural network to combine the results of the models and come up with a
+                final genre prediction. This final model has two hidden layers, using Leaky Relu activation functions,
+                and a prediction layer using a Softmax activation. This model uses L1 regularization and dropout in the
+                hidden layers to prevent overfitting.
+            </p>
+
+            <h3>Concluding Remarks and Future Work</h3>
+            <p>
+                Predicting album genres is considerably difficult for humans and AI, however the cover art is not
+                completely random. Our model has detected patterns in the genre assignment. This approach was limited to
+                the extent that AOTY’s genre assignment is accurate, and specific genres differ in their choice of cover
+                art. Based on how poorly humans performed in the test, it appears that the solution to this problem is
+                unintuitive.
+            </p>
+            <p>
+                To improve our results in the future, we could expand our dataset, especially for our smallest classes;
+                find a more sophisticated method for assigning genres to albums with which to train; and incorporate
+                album metadata such as album name, artist name and release year into the model.
+            </p>
+            <p>
+                Although our model does not have great accuracy and is not “shovel-ready” that doesn’t mean that
+                industry in general isn’t ready for deep learning. Many pre-trained models can be utilized much like how
+                we used our object detector. Just because a model takes a long time to train does not mean that it
+                should not be used in industry. In the past, deep learning has been more of an academic solution than an
+                industry solution. Our group thinks that is changing, and that deep learning is no longer suited just
+                for academics, but for industry problems as well.
+            </p>
+            <p>
+                The single attribute that could improve our model the most would be a consistent regulation of genre
+                assignment. Although AOTY contains more than 100 genres in which to classify albums, there were a few
+                times albums we were familiar with seemed to be misclassified. This is a challenging variable to
+                regulate, because genres evolve over time, multiple genres can be represented in the same album or even
+                the same song, and multiple people could logically disagree on the assignment of genre for a particular
+                album.
+            </p>
+
+            <h3>References</h3>
+            <ul>
+                <li>Hepburn, Alexander & McConville, Ryan & Santos-Rodríguez, Raúl. "Album Cover Generation from Genre
+                    Tags", 2017.</li>
+                <li>Libeks, Janis & Turnbull, Douglas. "You Can Judge an Artist by an Album Cover: Using Images for
+                    Music Annotation," in IEEE MultiMedia, vol. 18, no. 4, pp. 30-37, April 2011. doi:
+                    10.1109/MMUL.2011.1</li>
+            </ul>
+
+            <h3>Comments on the Project</h3>
+            <p>
+                We learned quite a bit during the project. We learned about different types of CNN’s and how and why
+                they work. They homework was great for this. It let us try different models with different
+                hyperparameters on the CIFAR dataset. We were also able to leverage the homework to help create the
+                final model we used in the project. We also learned how to leverage an existing model (the object
+                detection model) to help with our predictions.
+            </p>
+            <p>
+                The schedule to complete the project was possibly a bit short this year, but that is because the start
+                of the project was pushed back a week or two due to the schedule this year. We did have some trouble
+                working on our project on the Deepdish servers, as those seemed to constantly be busy. Instead we
+                created our own server on Google Cloud Platform to train our models. GCP gives new users free credits to
+                do this, and we made sure to stay under the limit of the free credits. GCP worked out really well for
+                us, and we would recommend it to teams working on this project in the future. Yintai’s directions on how
+                to set this up were also extremely helpful.
+            </p>
+            <p>
+                We thought that the AI and machine learning aspects of the project were very useful. We have had to do a
+                handful of presentations already in the MSiA program, but being the only project in the program that
+                allows us to work on AI was very helpful and a great learning experience.
+            </p>
+
         </div>
     </div>
 </div>
